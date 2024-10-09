@@ -1,0 +1,10 @@
+defaults:
+  - model: mlp
+  - train: default.yaml
+  - override hydra/job_logging: csv_logger
+
+# Dataset configuration
+dataset:
+  name: cifar10
+  root: ./data
+  download: true

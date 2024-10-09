@@ -1,0 +1,38 @@
+version: 1  # This specifies the version of the logging configuration
+
+formatters:
+  simple:
+    format: '[%(asctime)s] %(levelname)s: %(message)s'
+
+root:
+  level: INFO  # Set the default logging level for the root logger
+  handlers: [console]  # Attach the console handler to the root logger
+
+handlers:
+  train_file_handler:
+    class: logging.FileHandler
+    formatter: simple
+    filename: ${hydra:runtime.output_dir}/train.log
+    mode: a  # Append mode for the train log file
+
+  val_file_handler:
+    class: logging.FileHandler
+    formatter: simple
+    filename: ${hydra:runtime.output_dir}/val.log
+    mode: a  # Append mode for the val log file
+
+  console:
+    class: logging.StreamHandler
+    formatter: simple
+    stream: ext://sys.stdout  # Output logs to the console (stdout)
+
+loggers:
+  train_logger:
+    level: INFO
+    handlers: [train_file_handler]  # Write logs to both file and console
+    propagate: false  # Prevent logs from propagating to the root logger
+
+  val_logger:
+    level: INFO
+    handlers: [val_file_handler]  # Write logs to both file and console
+    propagate: false  # Prevent logs from propagating to the root logger

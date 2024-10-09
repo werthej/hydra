@@ -1,0 +1,12 @@
+model:
+  input_size: 3072
+  hidden_size: 512
+  num_classes: 10
+train:
+  batch_size: 64
+  learning_rate: 0.001
+  epochs: 200
+dataset:
+  name: cifar10
+  root: ./data
+  download: true

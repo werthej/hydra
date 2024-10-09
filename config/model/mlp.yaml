@@ -1,0 +1,3 @@
+input_size: 3072  # 3 * 32 * 32 (CIFAR-10 image size)
+hidden_size: 512
+num_classes: 10

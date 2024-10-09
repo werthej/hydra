@@ -1,0 +1,21 @@
+version: 1
+formatters:
+  csv_formatter:
+    format: '%(asctime)s, %(epoch)s, %(loss)s, %(accuracy)s, %(regularization)s'  # CSV format
+
+handlers:
+  file_handler:
+    class: logging.FileHandler
+    formatter: csv_formatter
+    filename: ${hydra:runtime.output_dir}/metrics.csv  # Logs will be saved in Hydra's output dir
+    mode: a  # Append mode
+
+loggers:
+  csv_logger:
+    level: INFO
+    handlers: [file_handler]
+    propagate: false
+
+root:
+  level: INFO
+  handlers: []
